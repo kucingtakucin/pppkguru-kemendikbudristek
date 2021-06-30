@@ -1,0 +1,54 @@
+/* Media Queries */
+@media (max-width:1000px) {
+    .data-responden {
+        max-width: 80%;
+    }
+}
+@media (max-width:768px) {
+    #tata-cara {
+        .section-title {
+            text-align: center !important;
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    #topnav .logo span {
+        font-size: 18px;
+    }
+    .login-button {
+        display: none;
+    }
+    .footer {
+        .logo {
+            margin: 0 auto;
+            line-height: 1.5;
+            justify-content: center;
+
+            a {
+                font-size: 24px;
+            }
+        }
+        ul.social-media {
+            padding: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 1440px) {
+    #tata-cara {
+        background-image: url(../img/bg-intersect.png);
+        background-repeat: round;
+
+        .bg-100-intersect::before {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 1920px) {
+    #tata-cara {
+        background-size: cover;
+    }
+}

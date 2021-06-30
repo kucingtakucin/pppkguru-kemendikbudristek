@@ -1,0 +1,402 @@
+.mover {
+    -webkit-animation: mover 1s infinite alternate;
+            animation: mover 1s infinite alternate;
+  }
+  
+  @-webkit-keyframes mover {
+    0% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    100% {
+      -webkit-transform: translateY(5px);
+              transform: translateY(5px);
+    }
+  }
+  
+  @keyframes mover {
+    0% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    100% {
+      -webkit-transform: translateY(5px);
+              transform: translateY(5px);
+    }
+  }
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .lh-1{
+     line-height: 1;
+ }
+ 
+ .lh-11{
+     line-height: 1.1;
+ }
+ 
+ .lh-12{
+     line-height: 1.2;
+ }
+ 
+ .lh-13{
+     line-height: 1.3;
+ }
+ 
+ .o-hidden{
+     overflow:hidden;
+ }
+ 
+ .rad-10{
+     border-radius: 10px;
+ }
+ 
+ .rad-15{
+     border-radius: 15px;
+ }
+ 
+ .rad-20{
+     border-radius: 20px;
+ }
+ 
+ .rad-25{
+     border-radius: 25px;
+ }
+ 
+ .rad-50{
+     border-radius: 50px;
+ }
+ 
+ .shadow-sm{
+ box-shadow: 0 26px 50px 0 #00000040;
+ }
+ 
+  .hide-mobile {
+      display: block;
+  }
+  
+  .hide-pc {
+      display: none;
+  }
+ 
+  .bg-100-intersect::before,
+  .bg-right-sm::before,
+  .bg-left-lg::after,
+  .bg-left-sm::after{
+      content: none;
+  }
+ 
+  .section#tata-cara{
+    background: #f0fbff;
+}
+
+.olay-top-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.olay-top-left{
+    position: absolute;
+    top: 14vh;
+    left: 0;
+}
+
+.olay-top-right-inf{
+    position: absolute;
+    top: -30px;
+    right: 0;
+}
+
+.olay-top-left-inf{
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+.olay-top-left-2{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.custom-shape-divider-bottom-1621254498 {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1621254498 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+.custom-shape-divider-bottom-1621254498 .shape-fill {
+    fill: #f0fbff;
+}
+
+.custom-shape-divider-top-1621255370 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1621255370 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+.custom-shape-divider-top-1621255370 .shape-fill {
+    fill: #f0fbff;
+}
+
+.btn-cust{
+    align-items: center;
+    display: flex;
+    color:var(--second-primary-color);
+    border: 1px solid var(--second-primary-color);
+    border-radius: 50px;
+}
+
+.btn-cust:hover{
+    background: var(--second-primary-color);
+    color: white;
+    border: 1px solid var(--second-primary-color);
+}
+
+.btn-custnya{
+    align-items: center;
+    display: flex;
+    color: var(--second-primary-color);
+    border: 1px solid var(--second-primary-color);
+    border-radius: 50px;
+}
+
+.btn-custnya:hover{
+    color:var(--second-primary-color);
+    background: var(--second-primary-color);
+    color: white;
+}
+
+.modal{
+    max-height: unset;
+    max-width: unset !important;
+    z-index: 1051;
+}
+
+.modal-body.cust{
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 8px;
+    border:1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 0 15px 15px 15px;
+}
+
+.modal-content{
+    border-radius: 12px;
+}
+
+#data-counter #live-data .card{
+
+}
+
+#data-counter #ringkasan-data .ringkasan-table{
+    padding: 35px 25px;
+}
+
+.footer{
+    padding: 30px 0 30px;
+}
+
+.txt-update{
+    color: #8F4A00;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.time-update{
+    font-weight: 500;
+    font-size: 14px;
+    color: #8F4A00;
+    margin: 0 0 0 auto;
+    text-align: right;
+}
+
+.img-3{
+    height: 150px;
+}
+
+.img-tahap{
+    width: 80%;
+}
+
+.breadcrumb.cust .breadcrumb-item:after{
+    content: none !important;
+}
+
+.bg-bread{
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: bottom center;
+    overflow: hidden;
+}
+
+.olay-dark{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(180deg, #ffffffb3 0%, #004158a3 100%);
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+}
+
+.img-logo.cust{
+    height: 50px;
+    width: auto;
+    margin: 0.35em 0.5em;
+}
+
+.img-logo.cust-foot{
+    height: 75px;
+    width: auto;
+    margin: 0.35em 0.5em;
+}
+
+.title-heading .heading.cust{
+    font-size: 30px !important;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   /* FHD Only */
+   @media screen and (max-width: 1920px) and (min-width: 1367px) {}   
+ 
+   /* HD Only */
+   @media screen and (max-width: 1366px) and (min-width: 601px) {}
+ 
+ /* Tablet */
+ @media screen and (max-width: 990px) {
+     .hide-mobile {
+         display: none;
+     }
+ 
+     .hide-pc {
+         display: block;
+     }
+ }
+ 
+  /* Smartphone */
+  @media screen and (max-width: 600px) {
+
+      .hide-mobile {
+          display: none;
+      }
+  
+      .hide-pc {
+          display: block;
+      }
+ 
+    .bg-100-intersect::before{
+         content: unset;       
+    }
+
+    .section#tata-cara{
+        background: #f0fbff;
+    }
+
+    .cust-top{
+        overflow: hidden;
+        position: relative;
+    }
+
+    .olay-top-right-inf,
+    .olay-top-right{
+        width: 40vw;
+    }
+    
+    .olay-top-left-inf,
+    .olay-top-left{
+        top: 44vh;
+        width: 75vw;
+    }
+
+    .footer{
+        padding: 30px 0 30px;
+    }
+
+    .table-res{
+        overflow-x: auto;
+    }
+
+    .table-res-2 .dataTables_wrapper.no-footer{
+        overflow-x: auto;
+    }
+
+    #data-counter #ringkasan-data .ringkasan-table{
+        padding: 35px 25px;
+    }
+
+    .bg-half.cust{
+        padding: 70px 0 50px;
+    }
+
+    #data-counter #live-data .card{
+        height: 150px;
+        overflow: hidden;
+    }
+ }
+
+ #jenjang-sekolah .live-title {
+  font-size: 18px;
+}
+
+#jenjang-sekolah .card {
+  height: 200px;
+  border-radius: 1em;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 162, 220, 0.1);
+  box-shadow: 0px 0px 30px rgba(0, 137, 186, 0.1);
+}
+
+#jenjang-sekolah .card .body {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+#jenjang-sekolah .card .live-counter::after {
+  position: absolute;
+  bottom: -7px;
+  right: 0;
+}
+
+#jenjang-sekolah .card .live-counter span {
+  line-height: 1;
+  font-weight: 700;
+  font-size: 56px;
+}

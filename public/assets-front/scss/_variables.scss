@@ -1,0 +1,75 @@
+// Color Pallatte
+$first-primary-color: #00698f;
+$second-primary-color: #00A2DC;
+$third-primary-color: #19C2FF;
+$first-secondary-color: #8F4A00;
+$second-secondary-color: #DB7100;
+
+// Mixin
+@mixin btnRound($bgColor, $textColor, $hoverBgColor) {
+    .btn-round {
+        display: block;
+        padding: 10px 44px 10px 20px;
+        background-color: $bgColor;
+        border-radius: 50px;
+        color: $textColor;
+        transition: all .2s linear;
+
+        i {
+            position: absolute;
+            margin-left: 8px;
+        }
+
+        &:hover {
+            background-color: $hoverBgColor;
+            color: #fff;
+        }
+    }
+}
+
+@mixin listUnderline($color) {
+    li {
+        display: table-cell;
+        position: relative;
+
+        a {
+            display: inline-block;
+            position: relative;
+
+            &::after {
+                display: block;
+                background: none repeat scroll 0 0 transparent;
+                content: "";
+                height: 2px;
+                width: 0;
+                bottom: -10%;
+                left: 50%;
+                position: absolute;
+                background: $color;
+                transition: width .3s ease 0s, left .3s ease 0s;
+            }
+
+            &:hover::after {
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+}
+
+@mixin activeLink($color, $underColor) {
+    a {
+        color: $color;
+
+        &::after {
+            display: block;
+            content: "";
+            height: 2px;
+            width: 100%;
+            bottom: -10%;
+            left: 0;
+            position: absolute;
+            background: $underColor;
+        }
+    }
+}
