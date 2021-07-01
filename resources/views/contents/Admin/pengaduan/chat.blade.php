@@ -48,7 +48,17 @@
                     <div class="col-lg-9">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Form Balas Pengaduan</h4>
+                                <h4 class="card-title mb-4">Judul: {{ $pengaduan->judul }} </h4>
+                                {{-- <button class="btn btn-info">Print</button> --}}
+                                @if ($pengaduan->status == '1')
+                                    <form action="{{ route('admin.pengaduan.close_chat', $pengaduan->id) }}"
+                                        class="form-inline d-inline" method="post">
+                                        @csrf @method('post')
+                                        <button class="btn btn-danger d-inline" id="selesai_pengaduan">
+                                            <i class="fas fa-ban"></i> Selesai pengaduan
+                                        </button>
+                                    </form>
+                                @endif
                                 <div class="chat-conversation p-3">
                                     <ul id="chat_section" class="list-unstyled mb-0 overflow-auto"
                                         style="max-height: 486px;">
@@ -122,9 +132,10 @@
                                             @csrf @method('post')
                                             <div class="col">
                                                 <div class="position-relative">
-                                                    <input type="text" name="isi" required
-                                                        class="form-control chat-input @error('balasan') is-invalid @enderror"
-                                                        placeholder="Enter Message...">
+                                                    <input type="text" style="width: 100%" name="isi" @if ($pengaduan->status == '0') disabled @else required @endif
+                                                        class="form-control isi chat-input @error('balasan') is-invalid @enderror"
+                                                    placeholder="          @if ($pengaduan->status == '0') Pengaduan telah ditutup @else
+                                                    Tuliskan Pesan Anda...@endif">
                                                     @error('balasan')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -146,10 +157,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <button type="submit"
-                                                    class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"><span
-                                                        class="d-none d-sm-inline-block mr-2">Send</span> <i
-                                                        class="mdi mdi-send"></i></button>
+                                                @if ($pengaduan->status == '1')
+                                                    <button type="submit" id="kirim_pesan"
+                                                        class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"><span
+                                                            class="d-none d-sm-inline-block mr-2">Send</span> <i
+                                                            class="mdi mdi-send"></i></button>
+                                                    <button id="loader"
+                                                        class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"
+                                                        type="button" disabled>
+                                                        <span class="spinner-border spinner-border-sm" role="status"
+                                                            aria-hidden="true"></span>
+                                                        Loading...
+                                                    </button>
+                                                @endif
                                             </div>
                                         </form>
                                     </div>
@@ -169,30 +189,19 @@
         <script>
             $(document).ready(function() {
                 function initChat() {
+                    $('#loader').hide()
                     $.ajax({
                         url: '{{ route('admin.pengaduan.get_chat', $pengaduan->id) }}',
                         type: 'get',
                         success: function(data) {
                             let html = ''
                             console.log(data.data.pengaduan_riwayat)
+                            $('.isi').val('')
                             data.data.pengaduan_riwayat.map(element => {
-                                if (element.who != '{{ Auth::id() }}') {
+                                if (element.who != '1') {
                                     html += `
                             <li>
                                 <div class="conversation-list">
-                                    <div class="dropdown">
-
-                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Copy</a>
-                                            <a class="dropdown-item" href="#">Save</a>
-                                            <a class="dropdown-item" href="#">Forward</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div>
                                     <div class="ctext-wrap">
                                         <div class="conversation-name">{{ $pengaduan->nama }}</div>
                                         <p>
@@ -210,19 +219,6 @@
                                     html += `
                             <li class="right">
                                 <div class="conversation-list">
-                                    <div class="dropdown">
-
-                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Copy</a>
-                                            <a class="dropdown-item" href="#">Save</a>
-                                            <a class="dropdown-item" href="#">Forward</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div>
                                     <div class="ctext-wrap">
                                         <div class="conversation-name">Admin</div>
                                         <p>
@@ -245,6 +241,13 @@
                             console.log(data)
                         }
                     })
+                    setTimeout(() => {
+                        var chat = document.getElementById("chat_section");
+                        $("#chat_section").animate({
+                            scrollTop: chat.scrollHeight - chat.clientHeight
+                        }, 1500)
+
+                    }, 1000);
                 }
                 initChat();
 
@@ -258,17 +261,55 @@
                         data: formData,
                         processData: false,
                         contentType: false,
+                        beforeSend: function() {
+                            $('#loader').show()
+                            $('#kirim_pesan').hide()
+                        },
                         success: function(data) {
-                            console.log(data)
+                            $('#kirim_pesan').show()
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: `${data.message}`,
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            // setTimeout(() => {
+                            //     location.reload()
+                            // }, 1000);
                             initChat();
+
                         },
                         error: function(error) {
-                            console.log(error)
+                            console.log(error);
                         }
                     })
-                    // simpleBar.unMount()
-                    // $('.simplebar-c$('#chat_section').ontent').append(`
+                })
 
+                $('#selesai_pengaduan').click(function(event) {
+                    event.preventDefault()
+                    Swal.fire({
+                        title: 'Apakah anda yakin?',
+                        text: "Anda tidak bisa mengembalikannya!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, tutup pengaduan!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: 'Pengaduan berhasil ditutup',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            setTimeout(() => {
+                                $(this).parent().submit()
+                            }, 1000);
+                        }
+                    })
                 })
             })
         </script>

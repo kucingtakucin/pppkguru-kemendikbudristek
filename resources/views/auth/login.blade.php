@@ -28,9 +28,7 @@
                 <div class="col-lg-7 col-md-6">
                     <div class="title-auth mt-4">
                         <h1 class="heading cust"><span class="text-primary-darker">PPPK Guru</span><br>Kemdikbudristek</h1>
-                        <p class="para-desc text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores,
-                            natus perferendis deleniti dolorum et impedit facere praesentium fuga asperiores nisi nemo
-                            dolorem. Eaque in nam provident saepe officiis, dignissimos esse.</p>
+                        <p class="para-desc text-muted"></p>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
@@ -44,8 +42,14 @@
                                         <label class="form-label">Username <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="mail" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" placeholder="Email" name="email"
-                                                required="">
+                                            <input type="text"
+                                                class="form-control ps-5 @error('email') is-invalid @enderror"
+                                                placeholder="Email or Username" name="email">
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -54,8 +58,14 @@
                                         <label class="form-label">Password <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="key" class="fea icon-sm icons"></i>
-                                            <input type="password" class="form-control ps-5" placeholder="Password"
-                                                name="password" required="">
+                                            <input type="password"
+                                                class="form-control ps-5 @error('password') is-invalid @enderror"
+                                                placeholder="Password" name="password">
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

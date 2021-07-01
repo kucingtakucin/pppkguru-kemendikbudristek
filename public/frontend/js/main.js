@@ -972,6 +972,8 @@
             success: function (o) {
                 if (o.success) {
                     /** Pengaduan berhasil tersimpan. Nomor Tiket Pengaduan Anda adalah ..... Balasan pengaduan akan dikirimkan melalui email yang telah dimasukkan. Terima Kasih */
+                    // $('#formpengaduan').trigger("reset");
+                    document.getElementById('formpengaduan').reset()
                     Swal.fire({
                         title: 'Berhasil!',
                         html: `${o.success}. Nomor tiket pengaduan anda adalah <b>${o.tiket}</b>. Balasan pengaduan akan dikirimkan melalui <i>email</i> yang telah dimasukkan. Terima kasih`,

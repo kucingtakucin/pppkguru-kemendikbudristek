@@ -1,4 +1,4 @@
-@extends('layouts.frontend.app')
+@extends('layouts.frontend.appsub')
 
 @section('content')
 
@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-12">
                             <!-- start contact form -->
-                            <form action="{{ route('contact.store') }}" method="post">
+                            <form id="formpengaduan" action="{{ route('contact.store') }}" method="post">
                                 @csrf @method('post')
                                 <div class="row row-cols-1 row-cols-md-2">
                                     <div class="col margin-4-rem-bottom sm-margin-25px-bottom">
@@ -196,13 +196,13 @@
                                         @enderror
                                         {{-- <input class="medium-select select bg-white margin-25px-bottom required" type="text"
                                             name="kategori_id" placeholder="Kategori" autocomplete="off"> --}}
-                                        <select name="kategori_id" id="kategori_id"
+                                        {{-- <select name="kategori_id" id="kategori_id"
                                             class="medium-select select bg-white margin-25px-bottom required">
                                             <option disabled selected>Kategori Pengaduan</option>
                                             @foreach ($kategori as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                             @endforeach
-                                        </select>
+                                        </select> --}}
                                         @error('kategori_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -235,7 +235,7 @@
                                     <div class="col text-center text-md-right">
                                         <input type="hidden" name="redirect" value="">
                                         <button class="btn btn-medium btn-gradient-light-purple-light-orange mb-0 submit"
-                                            type="submit">Send Message</button>
+                                            type="submit">Kirim Pengaduan</button>
                                     </div>
                                 </div>
                                 <div class="form-results d-none"></div>
@@ -253,10 +253,10 @@
     <script>
         $(document).ready(function() {
             $('#asal_provinsi').change(function(event) {
-                console.log(`{{ url()->current() }}/kotaByProvinsi/${$('#asal_provinsi').val()}`)
+                console.log(`{{ url()->current() }}/kotaByProvinsi/${pad($('#asal_provinsi').val())}`)
                 // let formData = new FormData();
                 $.ajax({
-                    url: `{{ url()->current() }}/kotaByProvinsi/${$('#asal_provinsi').val()}`,
+                    url: `{{ url()->current() }}/kotaByProvinsi/${pad($('#asal_provinsi').val())}`,
                     type: 'get',
                     // data: formData,
                     contentType: false,
@@ -275,6 +275,10 @@
                     }
                 })
             })
+
+            function pad(n) {
+                return (n < 100000) ? ("0" + n) : n;
+            }
         })
     </script>
 @endpush

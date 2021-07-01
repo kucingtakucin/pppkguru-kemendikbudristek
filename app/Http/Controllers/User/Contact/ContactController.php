@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Promise;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -29,16 +31,6 @@ class ContactController extends Controller
             'kabupatenkota' => MasterKabupatenKota::all(),
             'kategori' => RefKategoriPengaduan::all()
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -68,13 +60,12 @@ class ContactController extends Controller
             'asal_kabupaten_kota' => $request->asal_kabupaten_kota,
             'asal_provinsi' => $request->asal_provinsi,
             'status' => '1',
-            'kategori_id' => $request->kategori_id
         ]);
         $pengaduan_isi = PengaduanRiwayat::create([
             'pengaduan_judul_id' => $pengaduan_judul->id,
             'isi' => $request->isi,
-            'who' => Auth::id() ? '1' : '0',
-            'user_id' => Auth::id() ? Auth::id() : '0',
+            'who' => '0',
+            'user_id' =>'0',
         ]);
         
         $client = new GuzzleHttp\Client();
@@ -82,6 +73,7 @@ class ContactController extends Controller
             'form_params' => [ // dalamn hal kebutuhan formasi, tersedia disekolah
                 'idpesan' => $pengaduan_isi->id,
                 'jenis' => 'baru', //balas
+                'hash' => md5($pengaduan_judul->tiket),
                 'key' => '96acd8e3496766d4b0f004c4be8670f6' //md5('Y-m-d')
             ]
         ]);
@@ -102,48 +94,52 @@ class ContactController extends Controller
         return response()->json(MasterKabupatenKota::all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function get_chat(PengaduanJudul $pengaduan)
     {
-        //
+        return response()->json([
+            'status' => true,
+            'data' => PengaduanJudul::with('pengaduan_riwayat')->where('id', $pengaduan->id)->first()
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function send(Request $request, PengaduanJudul $pengaduan)
     {
-        //
+        $this->validate($request, [
+            'isi' => 'required'
+        ]);
+        $pengaduan_isi = PengaduanRiwayat::create([
+            'pengaduan_judul_id' => $pengaduan->id,
+            'isi' => $request->isi,
+            'who' => '0',
+            'user_id' => '0',
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Pesan berhasil dikirimkan'
+        ]);
+        // return redirect()->route('contact.chat', $pengaduan->tiket);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function chat($hash)
     {
-        //
+        // $result_tiket
+        // $result_tiket = openssl_decrypt($hash, "AES-128-CTR", "pppkguru");
+        // dd(PengaduanJudul::with('pengaduan_riwayat')->where('tiket', $result_tiket)->first());
+        // $tiket=DB::table('faq')->where('tiket','=',null)->get();
+        // $pengaduan = PengaduanJudul::with()
+        return view('contents.Contact.chat', [
+            'pengaduan' => DB::table('pengaduan_riwayat')
+                ->join('pengaduan_judul', 'pengaduan_riwayat.pengaduan_judul_id', '=', 'pengaduan_judul.id')->where('tiket', '=', $hash)->select('pengaduan_riwayat.*', 'pengaduan_judul.nama', 'pengaduan_judul.tiket')->get(),
+            'pengaduan_id' => PengaduanJudul::where('tiket', $hash)->first(),
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function close_chat($hash)
     {
-        //
+        PengaduanJudul::where('tiket', $hash)->update([
+            'status' =>'0'
+        ]);
+        return redirect()->route('contact.chat', $hash);
     }
 }

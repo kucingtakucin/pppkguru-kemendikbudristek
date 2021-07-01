@@ -47,6 +47,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminRoutes();
+
+        $this->mapOperatorRoutes();
     }
 
     /** Define the "web" routes for the application. */
@@ -74,6 +76,14 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web/admin.php'));
+    }
+
+    protected function mapOperatorRoutes()
+    {
+        Route::prefix('/operator')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/operator.php'));
     }
 
     /** Define the "web" routes for the application. */

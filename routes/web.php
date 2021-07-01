@@ -9,15 +9,14 @@ Route::get('/test', function () {
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contact', 'User\Contact\ContactController@index')->name('contact');
+Route::get('/contact/chat/{hash}', 'User\Contact\ContactController@chat')->name('contact.chat');
+Route::post('/contact/close_chat/{hash}', 'User\Contact\ContactController@close_chat')->name('contact.close_chat');
+Route::post('/send/{pengaduan}', 'User\Contact\ContactController@send')->name('contact.send');
+Route::get('/contact/chat/{hash}', 'User\Contact\ContactController@chat')->name('contact.chat');
 Route::get('/contact/kotaByProvinsi/{id}', 'User\Contact\ContactController@get_kota_by_provinsi')->name('contact.kota_by_provinsi');
 Route::post('/contact/store', 'User\Contact\ContactController@store')->name('contact.store');
-// Route::get('/', 'FrontController@index')->name('home');
-// Route::get('/data', 'FrontController@data')->name('data');
-// Route::get('/kontak', 'FrontController@kontak')->name('kontak');
-// Route::get('/infografis', 'FrontController@infografis')->name('infografis');
-// Route::get('/feedback', 'FrontController@feedback')->name('feedback');
-// Route::get('/dokumen', 'FrontController@dokumen')->name('dokumen');
-// Route::get('/best-practice', 'FrontController@bestPractice')->name('best-practice');
+
+
 
 Route::group([
     'prefix' => 'login'

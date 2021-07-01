@@ -8,6 +8,9 @@ use App\Models\PengaduanRiwayat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp;
+use Illuminate\Support\Facades\Mail;
+use GuzzleHttp\Promise;
 
 class PengaduanController extends Controller
 {
@@ -19,64 +22,8 @@ class PengaduanController extends Controller
     public function index()
     {
         return view('contents.Admin.pengaduan.index', [
-            'pengaduan' => PengaduanJudul::all()
+            'pengaduan' => PengaduanJudul::orderBy('created_at', 'DESC')->get()
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     */
-    public function create()
-    {
-        return view('contents.Admin.pengaduan.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Responses
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'nama' => 'required',
-            'email' => 'required',
-            'no_hp' => 'required',
-            'asal_provinsi' => 'required',
-            'asal_kabupaten_kota' => 'required',
-            'isi' => 'required'
-        ]);
-        $tiket = Carbon::parse(now())->format("dmY") . mt_rand(1000, 9999);
-        $pengaduan_judul = PengaduanJudul::create([
-            'tiket' => $tiket,
-            'judul' => $request->judul,
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'no_hp' => $request->no_hp,
-            'asal_kabupaten_kota' => $request->asal_kabupaten_kota,
-            'asal_provinsi' => $request->asal_provinsi,
-            'status' => '1',
-            'kategori_id' => $request->kategori_id
-        ]);
-        PengaduanRiwayat::create([
-            'pengaduan_judul_id' => $pengaduan_judul->id,
-            'isi' => $request->isi,
-            'who' => Auth::id() ? '1' : '0',
-            'user_id' => Auth::id() ? Auth::id() : '0',
-        ]);
-        return redirect()->route('admin.pengaduan.index')->with('success', 'Data berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pengaduan  $pengaduan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PengaduanJudul $pengaduan)
-    {
     }
 
     /**
@@ -106,21 +53,39 @@ class PengaduanController extends Controller
         return view('contents.Admin.pengaduan.chat', ['pengaduan' => $pengaduan]);
     }
 
+    public function close_chat(PengaduanJudul $pengaduan)
+    {
+        PengaduanJudul::where('id', $pengaduan->id)->update([
+            'status' => '0'
+        ]);
+        return redirect()->route('admin.pengaduan.chat', $pengaduan);
+    }
+
     public function send(Request $request, PengaduanJudul $pengaduan)
     {
         $this->validate($request, [
             'isi' => 'required'
         ]);
-        PengaduanRiwayat::create([
+        $pengaduan_isi = PengaduanRiwayat::create([
             'pengaduan_judul_id' => $pengaduan->id,
             'isi' => $request->isi,
-            'who' => Auth::id() ? Auth::id() : '0',
+            'who' => '1',
             'user_id' => Auth::id() ? Auth::id() : '0',
         ]);
 
-        return response()->json([
-            'status' => true
+        $client = new GuzzleHttp\Client();
+        $response = $client->request('POST', 'https://appt.demoo.id/layanan/email/pppk_helpdesk', [
+            'form_params' => [
+                'idpesan' => $pengaduan_isi->id,
+                'jenis' => 'balas', //balas
+                'key' => '96acd8e3496766d4b0f004c4be8670f6' //md5('Y-m-d')
+            ]
         ]);
+        return response()->json([
+            'status' => true,
+            'message' => 'Pesan berhasil dikirimkan'
+        ]);
+        // return redirect()->route('admin.pengaduan.chat', $pengaduan);
     }
 
     /**

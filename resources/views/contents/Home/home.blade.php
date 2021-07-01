@@ -8,6 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 full-screen md-h-600px sm-h-350px d-flex flex-column">
+                    <br/>
                     <h1
                         class="alt-font font-weight-600 text-white title-large w-50 mt-auto mb-0 letter-spacing-minus-5px sm-letter-spacing-minus-1-half xs-w-70 tit-utama">
                         PPPK Guru</h1>
@@ -30,7 +31,20 @@
                         data-fontsize="['15','12','12','12']" data-line-height="['15','12','12','12']" data-type="button"
                         data-responsive="off" data-responsive_offset="on"
                         data-frames='[{"delay":1100,"speed":200,"frame":"0","from":"o:0;","to":"o:1;","ease":"Power3.easeInOut"}]'
-                        data-textAlign="['left','left','left','center']" style="width: 325px; color: white;">Daftar Seleksi Guru PPPK
+                        data-textAlign="['left','left','left','center']" style="width: 325px; color: white;">Daftar Seleksi PPPK Guru
+                        <i class="line-icon-Arrow-OutRight right-icon" aria-hidden="true"
+                            style="opacity: 1; font-size: 30px; line-height: 30px; margin-left: 17px; transition: 0.3s ease-in-out;"></i>
+                        <span
+                            style="background: #3d99fd; opacity: 0.3; width: 50px; height: 50px; transform: translateY(-50%); top: 50%;"></span></a>
+
+                    <a class="section-link tp-caption btn btn-extra-large btn-expand-ltr collection-btn btn-rounded text-extra-dark-gray font-weight-600"
+                        href="{{ asset('upload/dokumen/210701_Pengumuman_Seleksi_PPPK_Guru.pdf') }}" target="_blank" data-x="['left','left','left','center']"
+                        data-hoffset="['0','40','34','0']" data-y="['middle','middle','middle','bottom']"
+                        data-voffset="['150','95','79','100']" data-whitespace="nowrap"
+                        data-fontsize="['15','12','12','12']" data-line-height="['15','12','12','12']" data-type="button"
+                        data-responsive="off" data-responsive_offset="on"
+                        data-frames='[{"delay":1100,"speed":200,"frame":"0","from":"o:0;","to":"o:1;","ease":"Power3.easeInOut"}]'
+                        data-textAlign="['left','left','left','center']" style="width: 350px; color: white;">Pengumuman Seleksi PPPK Guru
                         <i class="line-icon-Arrow-OutRight right-icon" aria-hidden="true"
                             style="opacity: 1; font-size: 30px; line-height: 30px; margin-left: 17px; transition: 0.3s ease-in-out;"></i>
                         <span
@@ -71,7 +85,8 @@
         </div>
     </section>
     @php
-    $show = 0;
+    $show = 2;
+    $xx=0;
     @endphp
 
     @if ($show === 1)
@@ -218,19 +233,64 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-8 mx-au">
+                <div class="col-12 col-md-8 mx-au" style="margin-bottom: 50px">
+                    <img class="fluid" src="{{ asset('frontend/images/alur_seleksi.png') }}" style="margin-left:-80px">
+                </div>
+                <div class="hide-mobile">
+                    <div class="containers" style="height:190px;width:215px;margin-left:-600px;margin-top:185px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#verval';return false;" class="preview" href="{{ asset('frontend/images/verval_ijazah.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:60px;width:100px;margin-left:-365px;margin-top:-116px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#formasi1';return false;" class="preview" href="{{ asset('frontend/images/formasi.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:60px;width:100px;margin-left:-210px;margin-top:-46px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#formasi3';return false;" class="preview" href="{{ asset('frontend/images/formasi.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:60px;width:100px;margin-left:-210px;margin-top:-240px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#formasi2';return false;" class="preview" href="{{ asset('frontend/images/formasi.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:65px;width:160px;margin-left:-240px;margin-top:-140px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#uk1';return false;" class="previewright" href="{{ asset('frontend/images/uk1.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:65px;width:160px;margin-left:-240px;margin-top:100px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#uk2';return false;" class="previewright" href="{{ asset('frontend/images/uk2.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:65px;width:160px;margin-left:-240px;margin-top:110px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#uk3';return false;" class="previewright" href="{{ asset('frontend/images/uk3.png') }}"><img class="img" src="{{ asset('frontend/images/kemdikbud-xs.png') }}" style="height:100%;opacity: 0"></a>
+                      </div>
+                    </div>
+                    <div class="containers" style="height:170px;width:155px;margin-left:-770px;margin-top:-210px;border:{{ $xx }}px solid #000">
+                      <div class="imgs">
+                        <a onclick="location.href='#pendaftaran';return false;"><img class="img" src="{{ asset('frontend/images/pendaftaran.png') }}" style="height:100%;cursor: pointer;"></a>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-12 mx-au" style="margin-top:10px;padding-top:20px;border-top:1px solid #ccc">
                     <ul class="list-style-06">
                         @foreach ($tahapan as $thp)
                         <li class="border-radius-6px margin-35px-bottom last-paragraph-no-margin wow animate__fadeIn"
-                            data-wow-delay="0.2s">
+                            data-wow-delay="0.2s" id="{{ $thp->idtag }}">
+                            <img class="float-left img-fluid margin-20px-right hvr-bounce-in" width="120" src="{{ asset('frontend/images/seleksi/'.$thp->icon) }}">
                             <div><span
-                                    class="w-25px h-25px text-center bg-fast-blue rounded-circle text-white margin-25px-right margin-5px-top d-flex flex-column"><i
-                                        class="fas fa-check"></i></span></div>
-                            <div><span
-                                    class="text-extra-medium text-dark-charcoal font-weight-500 margin-5px-bottom d-block">{{ $thp->nama_tahapan }}</span>
+                                    class="text-extra-medium text-dark-charcoal font-weight-500 margin-5px-bottom d-block">{{ $thp->nama_tahapan }}<span class="font-weight-600" style="font-size: 12px;color:blue">&nbsp;&nbsp;<b>{{ $thp->tanggal }}</b></span></span>
                                 <p class="w-100" style="text-align: justify;">{!! $thp->keterangan !!}</p>
                             </div>
                         </li>
+                        <hr>
                         @endforeach
                     </ul>
                 </div>
@@ -511,15 +571,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p style="margin-bottom: 10px"><b>Berkas yang diperlukan untuk seleksi administrasi adalah : </b></p>
-                            <ol>
+                            <ol style="padding-right: 10px">
+                                <li>Surat pernyataan yang dapat diunduh pada laman <a target="_blank" href="https://gurupppk.kemdikbud.go.id">https://gurupppk.kemdikbud.go.id</a>;</li>
+                                <li>KTP elektronik (e-KTP) asli;</li>
                                 <li>Pasfoto;</li>
-                                <li>Scan Kartu Tanda Penduduk;</li>
-                                <li>Scan ijazah dan Transkrip Nilai jenjang S-1/D-IV;</li>
-                                <li>Scan Sertifikat Pendidik bagi yang memiliki;</li>
+                                <li>Ijazah;</li>
+                                <li>Sertifikat Pendidik bagi yang memiliki;</li>
                                 <li>Bagi pendaftar penyandang disabilitas menambahkan;
-                                    <ul style="margin-left: 20px">
-                                        <li>Surat keterangan penyadang disabilitas dari rumah sakit/puskesmas milik pemerintah;</li>
-                                        <li>Video singkat melakukan kegiatan sehari-hari dan menjalankan tugas sebagai pendidik</li>
+                                    <ul style="margin-left: 20px;text-align: justify;">
+                                        <li>Surat keterangan dari dokter Rumah Sakit Pemerintah/Puskesmas yang menerangkan tentang jenis dan derajat kedisabilitasannya;</li>
+                                        <li>Menyampaikan tautan/link video singkat yang menunjukkan kegiatan sehari-hari pelamar dalam menjalankan tugas sebagai pendidik (pelamar mengunggah video singkat tersebut di youtube/googledrive/dropbox/media penyimpanan lainnya).</li>
                                     </ul>
                                 </li>
                             </ol>

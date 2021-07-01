@@ -80,6 +80,9 @@ class LoginController extends Controller
         if (Auth::validate([ $fieldType  =>  $input['email'],'password'=> $input['password']])) {
             if (Auth::attempt([ $fieldType => $input['email'],'password'=> $input['password']])) {
                 $this->clearLoginAttempts($request);
+                if (Auth::user()->role_id == '1') {
+                    return redirect()->route('operator.dashboard');
+                }
                 return redirect()->route('admin.dashboard');
             }
         }

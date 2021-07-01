@@ -8,10 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <title>PPPK Kemdikbudristek</title>
-    <meta name="author" content="Dirjen GTK Kemendikbudristek">
+    <title>PPPK Guru Kemdikbudristek</title>
+    <meta name="author" content="Dirjen GTK Kemdikbudristek">
     <meta name="description" content="PPPK Kemdikbudristek">
     <!-- favicon icon -->
     <link rel="shortcut icon" href="{{ asset('frontend/images/custom/kemdikbud-sm.png') }}">
@@ -23,12 +21,17 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/theme-vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/responsive.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/simplebar.min.css') }}">
+
     <!-- revolution slider -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/revolution/css/settings.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/revolution/css/layers.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/revolution/css/navigation.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom-2.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
 </head>
 
 <body data-mobile-nav-style="classic">
@@ -206,24 +209,20 @@
                         <ul>
                             <li><a href="#" class="text-white-hover">Kompleks Kementerian Pendidikan dan Kebudayaan,
                                     Gedung D Lantai 16, Jl. Jenderal Sudirman, Senayan, Jakarta 10270</a></li>
-                            <li><a href="#" class="text-white-hover">(0271) 1234 123</a></li>
                         </ul>
                     </div>
                     <!-- end footer column -->
                     <!-- start footer column -->
                     <div class="col-12 offset-md-1 col-md-2">
                         <span
-                            class="alt-font font-weight-500 d-block text-white text-uppercase letter-spacing-2px margin-30px-bottom xs-margin-25px-bottom">
-                            Ikuti Kami
+                            class="alt-font font-weight-500 d-block text-white text-uppercase letter-spacing-2px margin-20px-bottom xs-margin-10px-bottom">
+                            Call Center
                         </span>
-                        <div class="social-icon-style-12">
-                            <ul class="extra-small-icon light">
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
+                        <ul>
+                            <li style="font-size:20px"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;<a
+                                    href="tel:1 500 997" class="text-white-hover"><b>1 500 997</b></a></li>
+                        </ul>
+                        <!-- </div> -->
                     </div>
                     <!-- end footer column -->
                 </div>
@@ -266,6 +265,15 @@
         src="{{ asset('frontend/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/simplebar.min.js') }}"></script>
+
+    <script src="https://www.jquery-az.com/jquery/js/imagepreview/imagepreview.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $('.preview').anarchytip();
+      $('.previewright').anarchytip();
+    </script>
+
     <script type="text/javascript">
         var revapi263,
             tpj;
@@ -386,6 +394,7 @@
             }; /* END OF ON LOAD FUNCTION */
         }()); /* END OF WRAPPING FUNCTION */
     </script>
+
     {!! NoCaptcha::renderJs() !!}
     <script>
         window.dataLayer = window.dataLayer || [];

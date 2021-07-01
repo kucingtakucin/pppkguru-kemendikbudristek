@@ -19,7 +19,6 @@ class PengaduanJudul extends Model
         'asal_provinsi',
         'asal_kabupaten_kota',
         'status',
-        'kategori_id',
     ];
 
     public function pengaduan_riwayat()

@@ -94,7 +94,7 @@
                         Swal.fire('Berhasil!', 'Data berhasil dihapus.', 'success')
                         setTimeout(() => {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                     });
                 }
             })

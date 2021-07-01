@@ -30,18 +30,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Daftar Pengaduan</h4>
-                                <a href="{{ route('admin.pengaduan.create') }}" class="btn btn-sm btn-primary mb-4"><i
-                                        class="dripicons-plus"></i>Tambah</a>
+                                <hr>
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No</th>
                                             <th class="text-center">Nama Pengadu</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Alamat</th>
-                                            <th class="text-center">No HP</th>
-                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Judul</th>
+                                            <th class="text-center">Tanggal Pengaduan</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -50,19 +48,32 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $item->nama }}</td>
+                                                {{--
                                                 <td>{{ $item->email }}</td>
                                                 <td class="text-center">{{ $item->asal_kabupaten_kota }},
                                                     {{ $item->asal_provinsi }}</td>
                                                 <td class="text-center">{{ $item->no_hp }}</td>
                                                 <td class="text-center">
                                                     {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</td>
+                                                --}}
+                                                <td>{{ $item->judul }}</td>
+                                                <td class="text-center">
+                                                    {{ $item->created_at }}</td>
+                                                @if ($item->status==1)
+                                                <td class="text-center"><button class="btn btn-sm btn-success">Aktif</button></td>
+                                                @else
+                                                <td class="text-center"><button class="btn btn-sm btn-danger">Selesai</button></td>
+                                                @endif
+
                                                 <td class="text-center">
                                                     <a href="{{ route('admin.pengaduan.chat', $item->id) }}"
-                                                        class="btn btn-sm btn-success"><i class="dripicons-message"></i>
+                                                        class="btn btn-sm btn-primary"><i class="dripicons-message"></i>
                                                         Balas</a>
+                                                    {{--
                                                     <button type="button" id="btn-delete" data-id="{{ $item->id }}"
                                                         class="btn btn-sm btn-danger"><i class="dripicons-trash"></i>
                                                         Hapus</button>
+                                                    --}}
                                                 </td>
                                             </tr>
                                         @endforeach

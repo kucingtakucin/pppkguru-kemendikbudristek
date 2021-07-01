@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\MasterProvinsi;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'no_hp','password', 'fullname','role_id'
     ];
 
     /**
@@ -42,5 +43,10 @@ class User extends Authenticatable
     public function getRoleAttribute()
     {
         return $this->roles->last();
+    }
+
+    public function provinsi()
+    {
+        return $this->hasMany(MasterProvinsi::class);
     }
 }

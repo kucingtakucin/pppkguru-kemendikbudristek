@@ -1,0 +1,252 @@
+.bg-chat {
+  padding: 50px 0;
+}
+
+.bg-chat .card {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 992px) {
+  .chat-leftsidebar {
+    min-width: 380px;
+  }
+}
+
+.chat-leftsidebar .chat-leftsidebar-nav .tab-content {
+  min-height: 488px;
+}
+
+.chat-noti-dropdown.active:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  right: 0;
+}
+
+.chat-noti-dropdown .btn {
+  padding: 6px;
+  box-shadow: none;
+  font-size: 20px;
+}
+
+.chat-search-box .form-control {
+  border: 0;
+}
+
+.chat-list {
+  margin: 0;
+}
+
+.chat-list li.active a {
+  border-color: transparent;
+}
+
+.chat-list li a {
+  display: block;
+  padding: 14px 16px;
+  transition: all 0.4s;
+  border-radius: 4px;
+}
+
+.chat-list li a:hover {
+  border-color: transparent;
+}
+
+.user {
+  background-color: #0081b91a;
+  display: flex;
+  box-shadow: 0 5px 9px -3px rgba(0, 0, 0, 0.3);
+  justify-content: space-between;
+}
+
+.user .user-title h5 {
+  font-weight: 500;
+  color: #0081B9;
+}
+
+.user .print-sec {
+  margin: auto 0;
+}
+
+.user .print-sec .print-btn {
+  display: flex;
+  gap: .5em;
+  align-items: center;
+  color: #fff;
+  background-color: #0081B9;
+  border: none;
+  border-radius: 5px;
+  padding: .75em 1.5em;
+}
+
+.user .print-sec .print-btn:hover, .user .print-sec .print-btn:active, .user .print-sec .print-btn:focus {
+  background-color: #046c99;
+}
+
+.user-chat-nav .dropdown-chat .nav-btn {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  box-shadow: none;
+  padding: 0;
+  font-size: 16px;
+  border-radius: 50%;
+}
+
+.user-chat-nav .dropdown-chat .dropdown-menu {
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.3);
+  border: 1px solid #eff2f7;
+}
+
+.chat-conversation li {
+  clear: both;
+}
+
+.chat-conversation .chat-day-title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.chat-conversation .chat-day-title .title {
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  padding: 6px 24px;
+}
+
+.chat-conversation .chat-day-title:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  right: 0;
+  background-color: #f3ece7;
+  top: 15px;
+}
+
+.chat-conversation .chat-day-title .badge {
+  font-size: 12px;
+}
+
+.chat-conversation .conversation-list {
+  margin-bottom: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.chat-conversation .conversation-list .ctext-wrap {
+  border-radius: 8px 8px 8px 0px;
+  overflow: hidden;
+}
+
+.chat-conversation .conversation-list .ctext-wrap .conversation-name {
+  margin-bottom: 4px;
+}
+
+.chat-conversation .conversation-list .dropdown-chat {
+  float: right;
+}
+
+.chat-conversation .conversation-list .dropdown-chat .dropdown-toggle {
+  margin-left: 15px;
+}
+
+@media (max-width: 575.98px) {
+  .chat-conversation .conversation-list .dropdown-chat .dropdown-toggle {
+    display: none;
+  }
+}
+
+.chat-conversation .conversation-list .chat-time {
+  font-size: 12px;
+}
+
+.chat-conversation .right .conversation-list {
+  float: right;
+}
+
+.chat-conversation .right .conversation-list .ctext-wrap {
+  text-align: right;
+  border-radius: 8px 8px 0px 8px;
+}
+
+.chat-conversation .right .conversation-list .dropdown-chat {
+  float: left;
+}
+
+.chat-conversation .right .conversation-list.last-chat .conversation-list:before {
+  right: 0;
+  left: auto;
+}
+
+.chat-conversation .last-chat .conversation-list:before {
+  content: "\F0009";
+  font-family: "Material Design Icons";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 16px;
+}
+
+@media (max-width: 575.98px) {
+  .chat-conversation .last-chat .conversation-list:before {
+    display: none;
+  }
+}
+
+.chat-input {
+  border-radius: 30px;
+  background-color: rgba(235, 160, 107, 0.2) !important;
+  border-color: rgba(235, 160, 107, 0.5) !important;
+  padding-right: 120px;
+  padding: 1.5em 1.75em;
+}
+
+.chat-input-links {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chat-input-links li a {
+  font-size: 16px;
+  line-height: 36px;
+  padding: 0px 4px;
+  display: inline-block;
+}
+
+.chat-send {
+  padding: .65em 1.5em;
+  background-color: #0081B9;
+}
+
+.chat-send:hover, .chat-send:active, .chat-send:focus {
+  background-color: #046c99;
+}
+
+@media (max-width: 575.98px) {
+  .chat-send {
+    min-width: auto;
+  }
+}
+
+.conversation-list .ctext-wrap {
+  padding: 12px 44px 12px 24px;
+  background-color: rgba(226, 175, 139, 0.2);
+}
+
+.conversation-list .ctext-wrap .conversation-name {
+  font-size: 1.3em;
+  color: #0081B9;
+  font-weight: 500;
+}
+
+.conversation-list .dropdown-toggle:hover {
+  color: #bd5912;
+}
+/*# sourceMappingURL=custom-2.css.map */
